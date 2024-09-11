@@ -47,16 +47,5 @@
     "ffmpeg-static": "^5.2.0",
     "ffprobe-static": "^3.1.0",
     "vue": "^3.5.3"
-  },
-  "build": {
-    "extraFiles": [
-      {
-        "from": "resources/${os}",
-        "to": "resources/bin",
-        "filter": [
-          "**/*"
-        ]
-      }
-    ]
   }
 }

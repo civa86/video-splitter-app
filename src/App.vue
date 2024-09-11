@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="w-full flex flex-col bg-gray-100 rounded-lg p-4 mb-6">
+      <div v-if="!error" class="w-full flex flex-col bg-gray-100 rounded-lg p-4 mb-6">
         <div class="flex align-middle text-gray-600">
           <FileArrowDownIcon class="size-6" />
           <div class="pl-4 grow cursor-pointer hover:underline" @click="selectOutput()" :title="video.path">
