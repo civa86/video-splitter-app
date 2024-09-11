@@ -1,5 +1,6 @@
 <template>
   <div class="flex h-screen w-screen p-6">
+    <!-- TODO manage views -->
     <!-- INPUT STEP -->
     <FileDrop @file="onFile" v-if="appStatus === AppStatus.INPUT" />
 
@@ -8,7 +9,6 @@
       <div class="w-full flex flex-col bg-gray-100 rounded-lg p-4 mb-6">
         <div class="flex align-middle text-gray-600">
           <FileVideoIcon class="size-6" />
-          <!-- TODO truncate long names -->
           <div class="pl-4 grow" :title="video.name">{{ truncateInTheMiddle(video.name, 40) }}</div>
           <div>
             <LoaderSpinner v-if="isFetching" class="size-8 text-blue-400" />
