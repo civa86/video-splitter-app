@@ -130,8 +130,10 @@ ipcMain.handle(
   }
 )
 
-ipcMain.handle('dialog:get:directory', async (event: IpcMainInvokeEvent): Promise<string> => {
+ipcMain.handle('dialog:get:directory', async (event: IpcMainInvokeEvent, defaultPath: string): Promise<string> => {
   const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow, {
+    defaultPath,
+    buttonLabel: 'Select',
     properties: ['openDirectory']
   })
   if (canceled) {

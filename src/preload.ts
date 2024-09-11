@@ -11,8 +11,8 @@ export const backend = {
     const result = await ipcRenderer.invoke('video:get:info', path)
     return result
   },
-  selectFolder: async (): Promise<string> => {
-    const result = await ipcRenderer.invoke('dialog:get:directory')
+  selectFolder: async (defaultPath: string): Promise<string> => {
+    const result = await ipcRenderer.invoke('dialog:get:directory', defaultPath)
     return result
   },
   splitVideo: async (video: VideoElement, parts: number): Promise<boolean> => {

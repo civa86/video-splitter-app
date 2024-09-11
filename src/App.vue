@@ -21,7 +21,7 @@
         <div class="flex align-middle text-gray-600">
           <FileArrowDownIcon class="size-6" />
           <div class="pl-4 grow cursor-pointer hover:underline" @click="selectOutput()" :title="video.path">
-            {{ truncateInTheMiddle(video.prettyPath, 40) }}
+            {{ `${truncateInTheMiddle(video.prettyPath, 39)}/` }}
           </div>
           <NumberCounter v-model="parts" :min="2" />
         </div>
@@ -113,7 +113,7 @@ const onFile = async (file: File) => {
 }
 
 const selectOutput = async () => {
-  video.value.path = await backend.selectFolder()
+  video.value.path = await backend.selectFolder(video.value.path)
   video.value.prettyPath = await backend.prettyPath(video.value.path)
 }
 
