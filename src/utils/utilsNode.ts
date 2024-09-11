@@ -4,13 +4,9 @@ import { spawn } from 'child_process'
 import { app } from 'electron'
 
 const getBinariesPath = () => {
-  const IS_PROD = process.env.NODE_ENV === 'production'
   const { isPackaged } = app
-
-  const binariesPath =
-    IS_PROD && isPackaged
-      ? path.join(process.resourcesPath, './bin')
-      : path.join(app.getAppPath(), 'resources', 'mac', process.arch)
+  const base = isPackaged ? process.resourcesPath : app.getAppPath()
+  const binariesPath = path.join(base, 'resources', 'mac', process.arch)
 
   return binariesPath
 }

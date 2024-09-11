@@ -8,8 +8,8 @@
     <div class="w-full" v-if="appStatus === AppStatus.SPLIT">
       <div class="w-full flex flex-col bg-gray-100 rounded-lg p-4 mb-6">
         <div class="flex align-middle text-gray-600">
-          <FileVideoIcon class="size-6" />
-          <div class="pl-4 grow" :title="video.name">{{ truncateInTheMiddle(video.name, 40) }}</div>
+          <FileVideoIcon class="size-6 mr-4" />
+          <div class="grow" :title="video.name">{{ truncateInTheMiddle(video.name, 40) }}</div>
           <div>
             <LoaderSpinner v-if="isFetching" class="size-8 text-blue-400" />
             <span v-if="!isFetching && error" class="text-red-600">ERROR</span>
@@ -19,11 +19,17 @@
       </div>
       <div v-if="!error" class="w-full flex flex-col bg-gray-100 rounded-lg p-4 mb-6">
         <div class="flex align-middle text-gray-600">
-          <FileArrowDownIcon class="size-6" />
-          <div class="pl-4 grow cursor-pointer hover:underline" @click="selectOutput()" :title="video.path">
+          <FileArrowDownIcon class="size-6 mr-4" />
+          <LoaderSpinner v-if="isFetching" class="size-8 text-blue-400" />
+          <div
+            v-if="!isFetching"
+            class="grow cursor-pointer hover:underline"
+            @click="selectOutput()"
+            :title="video.path"
+          >
             {{ `${truncateInTheMiddle(video.prettyPath, 39)}/` }}
           </div>
-          <NumberCounter v-model="parts" :min="2" />
+          <NumberCounter v-if="!isFetching" v-model="parts" :min="2" />
         </div>
       </div>
 
@@ -61,7 +67,8 @@
 
 <script lang="ts" setup>
 declare const backend: typeof import('./preload').backend
-
+// TODO add i386 binaries
+// change app title and icons
 import { computed, ref } from 'vue'
 //Icons
 import FileVideoIcon from './components/Icons/FileVideoIcon.vue'
@@ -113,8 +120,11 @@ const onFile = async (file: File) => {
 }
 
 const selectOutput = async () => {
-  video.value.path = await backend.selectFolder(video.value.path)
-  video.value.prettyPath = await backend.prettyPath(video.value.path)
+  const result = await backend.selectFolder(video.value.path)
+  if (result) {
+    video.value.path = result
+    video.value.prettyPath = await backend.prettyPath(video.value.path)
+  }
 }
 
 const splitVideo = async () => {
