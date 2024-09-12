@@ -1,12 +1,12 @@
 <template>
-  <div class="flex h-screen w-screen p-6">
+  <div class="flex h-screen w-screen p-6 bg-gray-700">
     <!-- TODO manage views -->
     <!-- INPUT STEP -->
     <FileDrop @file="onFile" v-if="appStatus === AppStatus.INPUT" />
 
     <!-- SPLIT STEP -->
     <div class="w-full" v-if="appStatus === AppStatus.SPLIT">
-      <div class="w-full flex flex-col bg-gray-100 rounded-lg p-4 mb-6">
+      <div class="w-full flex flex-col bg-gray-200 rounded-lg p-4 mb-6">
         <div class="flex align-middle text-gray-600">
           <FileVideoIcon class="size-6 mr-4" />
           <div class="grow" :title="video.name">{{ truncateInTheMiddle(video.name, 40) }}</div>
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div v-if="!error" class="w-full flex flex-col bg-gray-100 rounded-lg p-4 mb-6">
+      <div v-if="!error" class="w-full flex flex-col bg-gray-200 rounded-lg p-4 mb-6">
         <div class="flex align-middle text-gray-600">
           <FileArrowDownIcon class="size-6 mr-4" />
           <LoaderSpinner v-if="isFetching" class="size-8 text-blue-400" />

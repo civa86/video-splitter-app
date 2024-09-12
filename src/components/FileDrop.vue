@@ -2,12 +2,14 @@
   <div class="flex items-center justify-center w-full h-full" ref="dropZone">
     <label
       for="dropzone-file"
-      class="w-full h-full flex flex-col items-center justify-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+      class="w-full h-full flex flex-col items-center justify-center rounded-lg cursor-pointer bg-gray-200 hover:bg-gray-100"
     >
       <div class="flex flex-col items-center justify-center pt-5 pb-6 text-gray-500">
+        <p class="text-red-600 pb-2">{{ error || '&nbsp;' }}</p>
         <FileVideoIcon class="size-24" v-if="!isDraggingOver" />
         <PlusIcon class="size-24 text-gray-200" v-if="isDraggingOver" />
-        <p class="text-red-600 pt-4" v-if="error">{{ error }}</p>
+
+        <p class="pt-4">Drop Video here or <b>Browse</b></p>
       </div>
       <input
         id="dropzone-file"
@@ -43,7 +45,7 @@ const isAllowedExtension = (name: string) => ALLOWED_EXTENSIONS.some(x => name.e
 
 const addItems = (files: FileList) => {
   const allowedFiles = Array.from(files).filter((x: File) => isAllowedMime(x.type || '') || isAllowedExtension(x.name))
-  if (allowedFiles.length === 0) error.value = 'INVALID FILE TYPE'
+  if (allowedFiles.length === 0) error.value = 'Invalid Video File'
   else emit('file', allowedFiles[0])
 }
 
