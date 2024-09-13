@@ -1,6 +1,6 @@
 {
   "name": "video-splitter-app",
-  "productName": "Video Splitter",
+  "productName": "VideoSplitter",
   "version": "0.1.2",
   "description": "Video Splitter Application for MacOSX",
   "main": ".vite/build/main.js",
