@@ -11,8 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-// TODO: change app icons
-
 // Types
 import { AppStatus, AppError } from './types'
 // Store
