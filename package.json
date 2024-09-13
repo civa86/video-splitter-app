@@ -1,8 +1,8 @@
 {
-  "name": "video-splitter-mac-app",
+  "name": "video-splitter-app",
   "productName": "Video Splitter",
-  "version": "1.0.0",
-  "description": "Video Splitter for MacOSX",
+  "version": "0.1.0",
+  "description": "Video Splitter Application for MacOSX",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
