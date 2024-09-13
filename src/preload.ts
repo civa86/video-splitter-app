@@ -7,9 +7,13 @@ import { VideoElement, VideoInfo } from './types'
 export const backend = {
   prettyPath: (path: string) => ipcRenderer.invoke('string:pretty:path', path),
   getVideoInfo: async (video: File): Promise<VideoInfo> => {
-    const path = webUtils.getPathForFile(video)
-    const result = await ipcRenderer.invoke('video:get:info', path)
-    return result
+    try {
+      const path = webUtils.getPathForFile(video)
+      const result = await ipcRenderer.invoke('video:get:info', path)
+      return result
+    } catch (e) {
+      throw e
+    }
   },
   selectFolder: async (defaultPath: string): Promise<string> => {
     const result = await ipcRenderer.invoke('dialog:get:directory', defaultPath)

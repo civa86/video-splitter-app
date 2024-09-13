@@ -87,13 +87,13 @@ ipcMain.handle('video:get:info', async (event: IpcMainInvokeEvent, filePath: str
       seconds: sexagesimalToSeconds(sexagesimal)
     }
   } catch (error) {
-    return { inputPath: '', path: '', sexagesimal: '', seconds: -1 }
+    throw error
   }
 })
 
 ipcMain.handle(
   'video:split',
-  async (event: IpcMainInvokeEvent, params: { video: VideoElement; parts: number }): Promise<boolean> => {
+  async (event: IpcMainInvokeEvent, params: { video: VideoElement; parts: number }): Promise<void> => {
     try {
       const promises = []
       const durationChunk = params.video.seconds / params.parts
@@ -122,10 +122,9 @@ ipcMain.handle(
         )
       }
       await Promise.all(promises)
-
-      return true
+      // TODO: return splitted stuff?
     } catch (error) {
-      return false
+      throw error
     }
   }
 )

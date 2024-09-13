@@ -6,7 +6,7 @@ import { app } from 'electron'
 const getBinariesPath = () => {
   const { isPackaged } = app
   const base = isPackaged ? process.resourcesPath : app.getAppPath()
-  const binariesPath = path.join(base, 'resources', 'mac', process.arch)
+  const binariesPath = path.join(base, 'resources', 'mac')
 
   return binariesPath
 }

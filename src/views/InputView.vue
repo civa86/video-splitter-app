@@ -25,14 +25,14 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import FileVideoIcon from './Icons/FileVideoIcon.vue'
-import PlusIcon from './Icons/PlusIcon.vue'
+import FileVideoIcon from '../components/Icons/FileVideoIcon.vue'
+import PlusIcon from '../components/Icons/PlusIcon.vue'
 
 const ALLOWED_MIMES = ['video/*']
 const ALLOWED_EXTENSIONS = ['.mkv']
 
 const emit = defineEmits<{
-  (e: 'file', file: File): unknown
+  (e: 'file', file: File): void
 }>()
 
 const dropZone = ref<HTMLElement | null>(null)
