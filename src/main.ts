@@ -20,7 +20,8 @@ const createWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       devTools: app.isPackaged ? false : true
-    }
+    },
+    icon: path.join(__dirname, '..', 'images', 'icon.png')
   })
 
   // and load the index.html of the app.
