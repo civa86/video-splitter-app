@@ -122,7 +122,6 @@ ipcMain.handle(
         )
       }
       await Promise.all(promises)
-      // TODO: return splitted stuff?
     } catch (error) {
       throw error
     }

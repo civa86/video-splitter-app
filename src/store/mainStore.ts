@@ -61,16 +61,17 @@ export const useStore = defineStore('main', {
     async splitVideo() {
       try {
         if (this.isSplitting === false) {
+          this.error = null
           this.isSplitting = true
-          const result = await backend.splitVideo({ ...this.video }, this.parts)
-          this.isSplitting = false
-          //TODO: get back splitted files path, time etc...?
+          await backend.splitVideo({ ...this.video }, this.parts)
           this.appStatus = AppStatus.SUCCESS
         }
       } catch (e) {
         this.error = AppError.SPLIT
       } finally {
-        this.isFetching = false
+        if (this.isSplitting === true) {
+          this.isSplitting = false
+        }
       }
     },
     async selectOutput() {

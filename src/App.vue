@@ -3,10 +3,8 @@
     <div class="w-full flex flex-col items-center">
       <InputView @file="store.setVideoElement" v-if="store.error === null && store.appStatus === AppStatus.INPUT" />
       <SplitView v-if="store.error === null && store.appStatus === AppStatus.SPLIT" />
+      <SuccessView v-if="store.error === null && store.appStatus === AppStatus.SUCCESS" @restart="store.restart()" />
       <ErrorView v-if="store.error === AppError.SPLIT" />
-      <!-- SUCCESS STEP -->
-      <!-- <div class="w-full" v-if="appStatus === AppStatus.SUCCESS">ok...</div> -->
-
       <RestartButton v-if="store.error !== null" class="w-full" mode="error" label @restart="store.restart()" />
     </div>
   </div>
@@ -22,6 +20,7 @@ import { useStore } from './store/mainStore'
 // Views
 import InputView from './views/InputView.vue'
 import SplitView from './views/SplitView.vue'
+import SuccessView from './views/SuccessView.vue'
 import ErrorView from './views/ErrorView.vue'
 //Components
 import RestartButton from './components/RestartButton.vue'
