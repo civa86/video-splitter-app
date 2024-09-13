@@ -57,7 +57,7 @@ const config: ForgeConfig = {
           owner: 'civa86',
           name: 'video-splitter-app'
         },
-        prerelease: true
+        prerelease: false
       }
     }
   ]
